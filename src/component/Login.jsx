@@ -1,4 +1,5 @@
-import { useState,  } from "react"
+import { useState, useContext, useEffect  } from "react"
+import { UserContext } from "../context/UserContext"
 import { Link, useNavigate} from "react-router-dom"
 
 export default function Login()
@@ -17,6 +18,9 @@ export default function Login()
      })
 
      const navigate = useNavigate();
+
+     const loggedData = useContext(UserContext);
+     
 
      // ------------------Functions------------------
 
@@ -71,11 +75,14 @@ export default function Login()
 
         })
         .then((data)=>{
+
+            console.log(data)
+
             if(data.token!==undefined)
             {
                 localStorage.setItem("app-user",JSON.stringify(data));
 
-                // loggedData.setLoggedUser(data);
+                loggedData.setLoggedUser(data);
 
                 navigate("/diet");
             }

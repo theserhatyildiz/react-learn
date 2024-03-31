@@ -5,11 +5,22 @@ import Login from './component/Login'
 import NotFound from './component/NotFound'
 import Diet from './component/Diet'
 
+import { UserContext } from './context/UserContext'
+import { useEffect, useState } from 'react'
 
-function App() {
+
+function App() 
+{
+
+  // ------------------Variables------------------
+
+  const [loggedUser,setLoggedUser] = useState(JSON.parse(localStorage.getItem("app-user")));
 
   return (
     <>
+
+      <UserContext.Provider value={{loggedUser, setLoggedUser}}>
+
         <BrowserRouter>
         
             <Routes>
@@ -23,6 +34,9 @@ function App() {
             </Routes>
         
         </BrowserRouter>
+
+      </UserContext.Provider>    
+
     </>
   )
 }
