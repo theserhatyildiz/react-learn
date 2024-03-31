@@ -4,6 +4,8 @@ import Register from './component/Register'
 import Login from './component/Login'
 import NotFound from './component/NotFound'
 import Diet from './component/Diet'
+import Private from './component/Private'
+import Demo from './component/Demo'
 
 import { UserContext } from './context/UserContext'
 import { useEffect, useState } from 'react'
@@ -28,8 +30,9 @@ function App()
                 <Route path='/' element={<Login/>}/>
                 <Route path='/register' element={<Register/>}/>
                 <Route path='/login' element={<Login/>}/>
+                <Route path='/diet' element={< Private Component={Diet}/>}/>
+                <Route path='/demo' element={< Private Component={Demo}/>}/>
                 <Route path='/*' element={<NotFound/>}/>
-                <Route path='/diet' element={<Diet/>}/>
 
             </Routes>
         
