@@ -1,6 +1,6 @@
-export default function Diet()
+export default function Demo()
 {
     return(
-        <h1>Welcome to Diet Page</h1>
+        <h1>Diet Page</h1>
     )
 }

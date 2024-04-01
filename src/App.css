@@ -85,3 +85,34 @@ a {
     border-radius: 0.25rem;
     font-weight: bold;
 }
+
+/* diet page css */
+
+.diet-container {
+    flex-direction: column;
+}
+
+.search {
+    width: 100%;
+    padding: 0.60rem;
+    background-color: #ffff;
+    border-radius: 0.65rem;
+}
+
+.search-inp{
+    width: 100%;
+    border: 3px solid rgb(215, 55, 80);
+    border-radius: 0.65rem;
+    text-indent: 0.5rem;
+    font-size: 1rem;
+}
+
+.search-results{
+    width: 100%;
+    background-color: black;
+    border-radius: 0.60rem;
+    padding: 0.625rem 0.325rem;
+    margin-top: 1.2rem;
+    /* position: absolute; */
+    left:0;  
+}
