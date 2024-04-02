@@ -1,6 +1,8 @@
 import { useContext } from "react"
 import { UserContext } from "../context/UserContext"
 import { useState } from "react";
+import FoodData from './FoodData';
+
 
 export default function Food()
 {
@@ -10,21 +12,22 @@ export default function Food()
 
         const [foodItems,setFoodItems] = useState([]);
 
+        const [food,setFood] = useState(null);
+
+
     // ------------------Functions------------------
 
-        function searchFood(event)
+    function searchFood(event)
+    {
+        if(event.target.value.length!==0)
         {
-            if(event.target.value.length!==0)
-
-         {
-            
-     // ------------------Calling the data to API------------------
 
             fetch(`http://localhost:8000/foods/${event.target.value}`,{
                 method:"GET",
                 headers:{
-                    "Authorization":`Bearer ${loggedData.loggedUser.token}`
+                    "Authorization":`Bearer ${loggedData.loggedUser.token}` 
                 }
+
             })
             .then((response)=>response.json())
             .then((data)=>{
@@ -43,47 +46,54 @@ export default function Food()
                 console.log(err);
             })
         }
+        else
+        {
+            setFoodItems([]);
+        }
 
 
     }
-    // ------------------Result------------------
+
     return(
-
         <>
+        
+            
+        <section className="container search-container">
+        
 
-        <section className="container diet-container">
+        <div className="search">
 
-            <div className="search">
-
-                <input className="search-inp" type="search" onChange={searchFood} placeholder="Search Food Item"/>
-
+                <input className="search-inp" onChange={searchFood} type="search" placeholder="Search food item"/>
+        
 
             {
                 foodItems.length!==0?(
+                    <div className="search-results">
 
-            <div className="search-results">
+                    {
+                        foodItems.map((item)=>{
 
+                            return(
+                                <p className="item" onClick={()=>{
+                                   setFood(item)
+                                }} key={item._id}>{item.NameTr}</p>
+                            )
+                        })
+                    }
 
-                {
-                    foodItems.map((item)=>{
+                    </div>
+                ):null
+            }
+        </div>
 
-                        return(
-                            <p className="item" key={item._id}>{item.NameTr}</p>
-                        )
-                    })
-                }
-
-
-            </div>
+        {
+             food!==null?(
+                    <FoodData food = {food}/>
             ):null
-
-            }   
-
-
-            </div>
+        }
+            
 
         </section>
-    
 
         </>
     )
