@@ -21,6 +21,8 @@ export default function Food()
     {
         if(event.target.value.length!==0)
         {
+            
+    // ------------------Calling the data to API------------------
 
             fetch(`http://localhost:8000/foods/${event.target.value}`,{
                 method:"GET",
