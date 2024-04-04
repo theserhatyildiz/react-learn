@@ -178,3 +178,57 @@ a {
     margin-left: 0.55rem;
     
 }
+
+
+/* diet page css */
+
+.diet-container{
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.65rem;
+
+}
+
+.date-box{
+    border-radius: 0.65rem;
+    padding: 0.15rem 0.5rem;
+}
+
+.item{
+    width:100%;
+    padding: 0.25rem 0.5rem;
+    background-color: #ffff;
+    border-radius: 0.65rem;
+}
+
+.item h3{
+    font-size: 0.85rem;
+    color: black;
+}
+
+.item h4{
+    color: rgb(215, 55, 80);
+    font-size: 0.75rem;
+}
+
+.item p{
+    font-size: 0.75rem;
+    color:black;
+}
+
+/* header page css */
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    gap: 2rem;
+    border: 1.5px solid black;
+    border-radius: 0.65rem;
+    padding: 0.15rem 0.55rem;
+    margin-bottom: 0.25rem;
+    background-color: white;
+    font-weight: bold;
+    color: black;
+}

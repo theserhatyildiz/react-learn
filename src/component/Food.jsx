@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { UserContext } from "../context/UserContext"
 import { useState } from "react";
 import FoodData from './FoodData';
+import Header from './Header';
 
 
 export default function Food()
@@ -61,7 +62,8 @@ export default function Food()
         
             
         <section className="container search-container">
-        
+
+            <Header/>
 
         <div className="search">
 

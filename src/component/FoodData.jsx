@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { UserContext } from "../context/UserContext"
+import { useContext } from "react";
 
 export default function FoodData(props)
 {
@@ -14,6 +16,9 @@ export default function FoodData(props)
     },[props.food])
 
     const [eatenQuantity,setEatenQuantity] = useState(100);
+
+    let loggedData = useContext(UserContext);
+
 
 
     // ------------------Functions------------------
@@ -39,6 +44,44 @@ export default function FoodData(props)
         
         }
     }
+
+        function trackFoodItem()
+        {
+            let trackedItem = {
+                userId:loggedData.loggedUser.userid,
+                foodId:food._id,
+                details:{
+                    Protein:food.Protein,
+                    Carbohydrate:food.Carbohydrate,
+                    Fat:food.Fat,
+                    Fiber:food.Fiber,
+                    Calorie:food.Calorie
+                },
+                quantity:eatenQuantity
+            }
+    
+            console.log(trackedItem)
+
+        // ------------------Sending the data to API------------------
+    
+            fetch("http://localhost:8000/track",{
+                method:"POST",
+                body:JSON.stringify(trackedItem),
+                headers:{
+                    "Authorization":`Bearer ${loggedData.loggedUser.token}`,
+                    "Content-Type":"application/json"
+                }
+            })
+            .then((response)=>response.json())
+            .then((data)=>{
+                console.log(data);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+    
+        }
+
 
     return(
         
@@ -68,7 +111,7 @@ export default function FoodData(props)
 
                 <input type="number" onChange={calculateMacros} className="inp-quant" placeholder="Quantity in Grams" />
 
-                <button className="btn-add">Add</button>
+                <button className="btn-add" onClick={trackFoodItem}>Add</button>
 
         </div>
     )
